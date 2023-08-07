@@ -1,0 +1,9 @@
+name: First testing action
+on: push
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+   - name: Get repository code
+     uses: actions/checkout@v3
+   - name: Dependencies installing
+     run: npm ci
