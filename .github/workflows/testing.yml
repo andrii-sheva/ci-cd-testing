@@ -1,10 +1,20 @@
-name: First testing action
-on: push
+name: Dev server deploying
+on:
+  push:
+    branches:
+     - master
 jobs:
-  test:
+  preparing:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
       - name: Dependencies installing
         run: npm ci
+      - name: Build project
+        run: npm run build
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy on dev server
+        run: echo "Deployment process running ..."
