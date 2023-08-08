@@ -18,8 +18,13 @@ jobs:
         with:
           path: dist
           name: dist-files
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
   deploy:
     runs-on: ubuntu-latest
+    needs: preparing
     steps:
       - name: Deploy on dev server
         run: echo "Deployment process running ..."
