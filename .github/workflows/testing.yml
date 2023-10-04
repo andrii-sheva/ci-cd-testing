@@ -1,30 +1,34 @@
-name: Dev server deploying
+name: Build and deploy to dev server
+
 on:
   push:
     branches:
-     - master
+      - master
+
 jobs:
-  preparing:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get repository code
+      - name: Clone repository
         uses: actions/checkout@v3
-      - name: Dependencies installing
-        run: npm ci
-      - name: Build project
-        run: npm run build
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm build-only
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           path: dist
-          name: dist-files
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-files
-  deploy:
-    runs-on: ubuntu-latest
-    needs: preparing
-    steps:
-      - name: Deploy on dev server
-        run: echo "Deployment process running ..."
+          name: dist
+
+      - name: Deploy to server
+        uses: easingthemes/ssh-deploy@v4.1.8
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SOURCE: "dist"
+          REMOTE_HOST: "99.192.222.110"
+          REMOTE_USER: "andriis"
+          TARGET: "/srv/www/vhosts/dev-message.iwantclips.dev/current"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
