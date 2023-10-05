@@ -29,6 +29,3 @@ jobs:
           REMOTE_HOST: "99.192.222.110"
           REMOTE_USER: "andriis"
           TARGET: "/srv/www/vhosts/dev-message.iwantclips.dev/current"
-          SCRIPT_BEFORE: |
-            whoami
-            ls -al
