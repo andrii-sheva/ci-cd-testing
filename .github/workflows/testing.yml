@@ -28,3 +28,4 @@ jobs:
           SOURCE: "dist"
           REMOTE_HOST: "99.192.222.110"
           REMOTE_USER: "andriis"
+          SSH_CMD_ARGS: "-v"
