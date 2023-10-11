@@ -26,6 +26,6 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.GH_SSH_PRIVATE_KEY }}
           SOURCE: "dist"
+          TARGET: "/srv/www/vhosts/dev-message.iwantclips.dev/current"
           REMOTE_HOST: "99.192.222.110"
           REMOTE_USER: "githubactions"
-          SSH_CMD_ARGS: "-v"
