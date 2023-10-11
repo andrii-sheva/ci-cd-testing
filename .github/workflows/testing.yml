@@ -24,7 +24,7 @@ jobs:
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v4.1.10
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.GH_SSH_PRIVATE_KEY }}
           SOURCE: "dist"
           REMOTE_HOST: "99.192.222.110"
           REMOTE_USER: "githubactions"
